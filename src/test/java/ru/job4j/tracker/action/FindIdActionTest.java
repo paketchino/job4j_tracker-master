@@ -32,7 +32,10 @@ public class FindIdActionTest {
         findIdAction.execute(input, tracker);
 
         String ln = System.lineSeparator();
-        assertThat(out.toString(), is("id: " + item.getId() + ", " + "name: " + item.getName() + "," + " created: " + item.getCreated() + ln));
+        assertThat(out.toString(), is("id: "
+                + item.getId() + ", " + "name: "
+                + item.getName() + "," + " created: "
+                + item.getCreated() + ln));
         assertThat(tracker.findById(1).getId(), is(item.getId()));
 
     }
