@@ -36,8 +36,8 @@ public class Item implements Comparator<Item>   {
         this.created = created;
     }
 
-    public String getCreated() {
-        return FORMATTER.format(created);
+    public LocalDateTime getCreated() {
+        return created;
     }
 
     public Timestamp getTimeStamp() {

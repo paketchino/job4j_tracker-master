@@ -18,7 +18,7 @@ public final class MemTracker implements Store {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
 
-    public MemTracker() {
+    MemTracker() {
     }
 
     public static MemTracker getInstance() {

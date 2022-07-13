@@ -51,7 +51,7 @@ public class SqlTracker implements Store {
             preparedStatement.execute();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                item.setId(generatedKeys.getInt(item.getId()));
+                item.setId(generatedKeys.getInt(1));
                 }
             }
         } catch (SQLException e) {
