@@ -10,15 +10,15 @@ public class OptinalFilterTest {
 
     @Test
     public void defineChildren() {
-        OptinalFilter.Child c1 = new OptinalFilter.Child("Bob", 11);
-        OptinalFilter.Child c2 = new OptinalFilter.Child("James", 12);
-        OptinalFilter.Child c3 = new OptinalFilter.Child("Dick", 16);
-        OptinalFilter.Child c4 = new OptinalFilter.Child("Arthur", 12);
+        OptionalFilter.Child c1 = new OptionalFilter.Child("Bob", 11);
+        OptionalFilter.Child c2 = new OptionalFilter.Child("James", 12);
+        OptionalFilter.Child c3 = new OptionalFilter.Child("Dick", 16);
+        OptionalFilter.Child c4 = new OptionalFilter.Child("Arthur", 12);
 
-        OptinalFilter.Worker w1 = new OptinalFilter.Worker("1", List.of(c1, c2));
-        OptinalFilter.Worker w2 = new OptinalFilter.Worker("2", List.of(c3));
-        OptinalFilter.Worker w3 = new OptinalFilter.Worker("3", List.of(c4));
+        OptionalFilter.Worker w1 = new OptionalFilter.Worker("1", List.of(c1, c2));
+        OptionalFilter.Worker w2 = new OptionalFilter.Worker("2", List.of(c3));
+        OptionalFilter.Worker w3 = new OptionalFilter.Worker("3", List.of(c4));
         assertEquals(List.of(),
-                OptinalFilter.defineChildren(List.of(w1, w2, w3), "1"));
+                OptionalFilter.defineChildren(List.of(w1, w2, w3), "1"));
     }
 }
