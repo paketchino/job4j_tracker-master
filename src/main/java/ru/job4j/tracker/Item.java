@@ -25,6 +25,8 @@ public class Item implements Comparator<Item>   {
 
     private String name;
 
+    private String description;
+
     private LocalDateTime created = LocalDateTime.now();
 
     public Item() {
@@ -43,6 +45,14 @@ public class Item implements Comparator<Item>   {
         this.id = id;
         this.name = name;
         this.created = created;
+    }
+
+    public static Item of(String name, String description, LocalDateTime created) {
+       Item item = new Item();
+       item.name = name;
+       item.description = description;
+       item.created = created;
+       return item;
     }
 
     public LocalDateTime getCreated() {
