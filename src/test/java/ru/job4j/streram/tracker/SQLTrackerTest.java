@@ -1,9 +1,9 @@
 package ru.job4j.streram.tracker;
 
 import org.junit.*;
-import ru.job4j.tracker.Item;
-import ru.job4j.tracker.SqlTracker;
-import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.storedb.SqlTracker;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

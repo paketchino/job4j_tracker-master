@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

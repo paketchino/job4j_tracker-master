@@ -5,13 +5,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.type.LocalDateTimeType;
-import ru.job4j.tracker.Item;
+import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.hibernate.model.Car;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class HblRun {
 

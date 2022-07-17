@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.Random;
+import ru.job4j.tracker.model.Item;
 
 public class TestGC {
     public static void main(String[] args) {
