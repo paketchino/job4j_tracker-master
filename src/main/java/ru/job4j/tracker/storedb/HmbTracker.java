@@ -29,11 +29,7 @@ public class HmbTracker implements Store, AutoCloseable {
     public Item add(Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Query query = session.createQuery("insert into Item (name, description, created) "
-                        + "select concat(i.name, ' NEW'), i.description, i.created "
-                        + "from Item i where i.id = :fId");
-                query.setParameter("fId", 1)
-                .executeUpdate();
+        session.save(item);
         session.getTransaction().commit();
         HmbTracker tracker = new HmbTracker();
         tracker.close();
@@ -52,10 +48,11 @@ public class HmbTracker implements Store, AutoCloseable {
         query.setParameter("newDesc", "desc3");
         query.setParameter("newTimestump", Timestamp.valueOf(LocalDateTime.now()));
         query.setParameter("fId", id);
+        boolean rsl = query.executeUpdate() > 0;
         session.getTransaction().commit();
         HmbTracker tracker = new HmbTracker();
         tracker.close();
-        return false;
+        return rsl;
     }
 
     @Override
@@ -64,7 +61,7 @@ public class HmbTracker implements Store, AutoCloseable {
         session.beginTransaction();
         Query query = session.createQuery("delete from Item where id =: fId");
         query.setParameter("fId", id);
-        boolean condition = query != null;
+        boolean condition = query.executeUpdate() > 0;
         session.getTransaction().commit();
         HmbTracker tracker = new HmbTracker();
         tracker.close();
@@ -89,7 +86,7 @@ public class HmbTracker implements Store, AutoCloseable {
         Query query = session.createQuery("from Item i where i.name =: fName");
         query.setParameter("fName", key);
         List list = query.list();
-        System.out.println(query.uniqueResult());
+        System.out.println(query);
         session.getTransaction().commit();
         session.close();
         return list;
@@ -97,15 +94,11 @@ public class HmbTracker implements Store, AutoCloseable {
 
     @Override
     public Item findById(int id) {
-        Item item = null;
         Session session = sf.openSession();
         session.beginTransaction();
         Query query = session.createQuery("from Item i where i.id =: fId");
         query.setParameter("fId", id);
-        List<Item> itemList = query.list();
-        for (Item i : itemList) {
-            item = i;
-        }
+        Item item = session.get(Item.class, id);
         session.getTransaction().commit();
         session.close();
         return item;
@@ -113,6 +106,6 @@ public class HmbTracker implements Store, AutoCloseable {
 
     @Override
     public void close() {
-        sf.close();
+        StandardServiceRegistryBuilder.destroy(registry);
     }
 }
