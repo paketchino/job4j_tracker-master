@@ -47,6 +47,15 @@ public class Item implements Comparator<Item>   {
         this.created = created;
     }
 
+    public static Item of(int id, String name, String description, LocalDateTime created) {
+        Item item = new Item();
+        item.id = id;
+        item.name = name;
+        item.description = description;
+        item.created = created;
+        return item;
+    }
+
     public static Item of(String name, String description, LocalDateTime created) {
        Item item = new Item();
        item.name = name;
@@ -77,6 +86,14 @@ public class Item implements Comparator<Item>   {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
