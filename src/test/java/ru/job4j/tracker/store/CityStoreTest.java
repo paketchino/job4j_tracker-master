@@ -21,7 +21,7 @@ public class CityStoreTest {
     @Test
     public void whenFindAll() {
         CityStore cityStore = new CityStore();
-        City city1 = new City("Moscow");
+        City city1 = new City("Saratov");
         City city2 = new City("St. Petersburg");
         cityStore.create(city1);
         cityStore.create(city2);

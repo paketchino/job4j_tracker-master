@@ -10,6 +10,7 @@ import ru.job4j.tracker.hibernate.model.Car;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class HblRun {
 
@@ -22,9 +23,9 @@ public class HblRun {
                     .buildSessionFactory();
             Session session = sf.openSession();
             session.beginTransaction();
-
-            Item item1 = Item.of("Item1", "Desc", LocalDateTime.now());
-            Item item2 = Item.of("Item2", "Desc2", LocalDateTime.now());
+            new Date(System.currentTimeMillis());
+            Item item1 = new Item(1, "Item1", "Desc", new Date(System.currentTimeMillis()));
+            Item item2 = new Item(2, "Item2", "Desc2", new Date(System.currentTimeMillis()));
             Car car = Car.of("Toyota", new Timestamp(1459510232000L), "Sergey");
             session.save(car);
             session.save(item1);

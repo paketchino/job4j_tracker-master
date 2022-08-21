@@ -32,7 +32,7 @@ public class ItemTest {
 
     @Test
     public void sortByLow() {
-        Item item = new Item();
+        Item item = new Item("N");
         List<Item> items = Arrays.asList(
                 new Item("a"),
                 new Item("b"),
@@ -43,7 +43,7 @@ public class ItemTest {
                 new Item("b"),
                 new Item("a")
         );
-        Comparator c = Collections.reverseOrder(new Item());
+        Comparator c = Collections.reverseOrder(new Item("N"));
         Collections.sort(items, c);
         assertThat(item.compare(items.get(0), items2.get(0)), is(0));
         assertThat(item.compare(items.get(1), items2.get(1)), is(0));

@@ -1,5 +1,8 @@
 package ru.job4j.tracker.model;
 
+import com.sun.istack.NotNull;
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,113 +13,43 @@ import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.Objects;
+import java.sql.Date;
 
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "items")
 public class Item implements Comparator<Item>   {
-
-    private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JoinColumn(name = "name")
     private String name;
-
+    @JoinColumn(name = "description")
     private String description;
 
-    private LocalDateTime created = LocalDateTime.now();
-
-    public Item() {
-    }
+    @Getter
+    @Setter
+    @Column(name = "created", columnDefinition = "DATE")
+    private Date date = new Date(System.currentTimeMillis());
 
     public Item(String name) {
         this.name = name;
     }
 
-    public Item(int id, String name) {
-        this.id = id;
+    public Item(String name, String description, Date date) {
         this.name = name;
-    }
-
-    public Item(int id, String name, LocalDateTime created) {
-        this.id = id;
-        this.name = name;
-        this.created = created;
-    }
-
-    public static Item of(int id, String name, String description, LocalDateTime created) {
-        Item item = new Item();
-        item.id = id;
-        item.name = name;
-        item.description = description;
-        item.created = created;
-        return item;
-    }
-
-    public static Item of(String name, String description, LocalDateTime created) {
-       Item item = new Item();
-       item.name = name;
-       item.description = description;
-       item.created = created;
-       return item;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public Timestamp getTimeStamp() {
-        return Timestamp.valueOf(created);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
+        this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Item item = (Item) o;
-        return id == item.id
-                && Objects.equals(name, item.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
+    public Item(int id, String name, String description, Date date) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.date = date;
     }
 
     @Override

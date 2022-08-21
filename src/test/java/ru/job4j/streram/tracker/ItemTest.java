@@ -32,7 +32,7 @@ public class ItemTest {
 
     @Test
     public void sortByLow() {
-        Item item = new Item();
+        Item item = new Item("N");
         List<Item> items = Arrays.asList(
                 new Item("a"),
                 new Item("b"),

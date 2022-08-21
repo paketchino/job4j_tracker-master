@@ -42,11 +42,11 @@ public class HmbTracker implements Store, AutoCloseable {
         session.beginTransaction();
         Query query = session.createQuery(
                 "update Item i set i.name = :newName, "
-                        + "i.description = :newDesc, i.created = :newTimestamp where i.id = :fId"
+                        + "i.description = :newDesc, i.date = :newTimestamp where i.id = :fId"
         );
         query.setParameter("newName", item.getName());
         query.setParameter("newDesc", item.getDescription());
-        query.setParameter("newTimestamp", LocalDateTime.now());
+        query.setParameter("newTimestamp", Timestamp.valueOf(LocalDateTime.now()));
         query.setParameter("fId", id);
         boolean rsl = query.executeUpdate() > 0;
         session.getTransaction().commit();
