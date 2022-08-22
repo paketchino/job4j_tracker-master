@@ -1,1 +1,1 @@
-alter table items add column DESCRIPTION text cascade;
+alter table items add column DESCRIPTION text;
