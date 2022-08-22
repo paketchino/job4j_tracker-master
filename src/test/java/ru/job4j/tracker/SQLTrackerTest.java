@@ -49,6 +49,7 @@ public class SQLTrackerTest {
         }
     }
 
+    @Ignore
     @Test
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
         SqlTracker sqlTracker = new SqlTracker(connection);
